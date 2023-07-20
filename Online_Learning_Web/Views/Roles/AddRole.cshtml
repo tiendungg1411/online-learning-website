@@ -1,0 +1,31 @@
+﻿@using Microsoft.AspNetCore.Identity;
+
+<h2>Add role for @ViewBag.User.UserName</h2>
+<h3>Roles are set up for users</h3>
+<form asp-action="AddRole" method="post">
+    @*Hidden field*@
+    <input type="hidden" value="@ViewBag.User.Id" name="id"/>
+    <select name="roles" multiple style="width: 300px; height: 150px;">
+        @foreach (IdentityRole role in ViewBag.listRoles)
+        {
+            bool selected = false;
+            @foreach (var roleSl in ViewBag.listUserRoles)
+            {
+                if (role.Name.Equals(roleSl)) { 
+                    selected = true; 
+                }
+            }
+            @if (selected)
+            {
+                <option selected value="@role.Name">@role.Name</option>
+            }
+            else
+            {
+                <option value="@role.Name">@role.Name</option>
+            }
+
+        }
+    </select><br />
+    <input type="submit" value="Update" class="btn btn-success" />
+</form>
+

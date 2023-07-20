@@ -1,0 +1,54 @@
+﻿@model Online_Learning_Web.Models.Lesson
+
+<h1>Delete</h1>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Lesson</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.NumOfLike)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.NumOfLike)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Type)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Type)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Link)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Link)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Date)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ChapterID)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ChapterID)
+        </dd>
+    </dl>
+
+    <form asp-action="DeleteLesson">
+        <input type="hidden" asp-for="ID" />
+        <input type="hidden" name="chapterId" value="@Model.ChapterID"/>
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-action="EditChapter" asp-route-id="@Model.ChapterID">Back to List</a>
+    </form>
+</div>

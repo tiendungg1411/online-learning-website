@@ -1,0 +1,61 @@
+﻿@model IEnumerable<Online_Learning_Web.Models.RouteType>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<h1 style="font-size:40px;font-weight: 600">Lộ trình học</h1>
+    <br>
+    <a style="font-size:20px">Để bắt đầu một cách thuận lợi, bạn nên tập trung vào một lộ trình học. Ví dụ: Để đi làm với vị trí "Lập trình viên Front-end"</a>
+    <span style="font-size:20px"> bạn nên tập trung vào lộ trình "Front-end".</span>
+
+    <div style="margin-top: 40px;width: 1050px;display: grid;
+                             grid-template-columns: 1fr 1fr; /* Chia thành 2 cột bằng nhau */grid-gap: 23px;margin-bottom:150px">
+        @foreach (var item in Model)
+        {
+            <div style="height: 250px;border-color: black;border-radius: 16px;border:2px solid #e8e8e8;">
+                <div style="display: flex;margin-bottom:68px">
+                    <div style="height: 100px">
+                        <h1 style="margin-top: 25px;margin-left: 20px;font-weight: 800;font-size:25px">@Html.DisplayFor(modelItem => item.Name)</h1> <br>
+                        <p style="width: 290px;margin-left: 20px;font-size: 17px;margin-top:-15px">
+                            @Html.DisplayFor(modelItem => item.Description1)
+                        </p>
+                    </div>
+                    <a>
+                        <img src=" @Html.DisplayFor(modelItem => item.Image)" style="border-radius: 50% ; width: 110px;height: 110px;border-color: orange;border:4px solid orangered;margin-left: 36px;margin-top: 20px;cursor: pointer">
+                    </a>
+                </div>
+                <div >
+                    <a href="https://localhost:7047/DetailLearnPath/index/ @item.ID" class="btn btn-warning" style=" background-color: #f05123; border-radius: 30px; color: #ffffff;text-decoration: none;margin-left:20px;width:140px;font-size:17px">
+                            Xem chi tiết
+                        </a>
+                </div>
+
+            </div>
+        }
+    </div>
+
+
+    <div style="display: flex;margin-top: -70px">
+        <div style="width: 500px;height: 250px;margin-top: 100px">
+            <h1 style="font-size: 25px;font-weight: 600;">Tham gia cộng đồng học viên F8 trên Facebook</h1>
+            @* <h1 style="font-size: 25px;font-weight: 600;margin-top: 15px;margin-bottom: 10px">trên Facebook</h1> *@ 
+            <br>
+            <a style="font-size: 20px">Hàng nghìn người khác đang học lộ trình giống như bạn. Hãy tham gia hỏi đáp, chia sẻ và hỗ trợ nhau trong quá trình học nhé.</a>
+          
+                
+                <div style="width: 340px;height: 36px;display: flex;
+                                     justify-content: center;
+                                     align-items: center;border: 2px solid black;margin-top: 50px;border-radius: 30px;font-size: 20px;font-weight: 600;cursor: pointer" >
+                    Tham gia nhóm
+                </div>
+         
+        </div>
+        <a>
+            <img src="https://fullstack.edu.vn/static/media/fb-group-cards.4bd525b1b8baf7b1e5a2.png" style="width: 550px;height: 550px;margin-left: 500px;margin-top:-150px">
+
+        </a>
+    </div>
+
+

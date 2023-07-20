@@ -1,0 +1,61 @@
+﻿@using Online_Learning_Web.ViewModel;
+
+@{
+    ViewData["Title"] = "Doing Quiz";
+}
+<style>
+
+</style>
+
+@{
+    var count = 1;
+    bool isDoing = false;
+    bool check = false;
+    var answer = "";
+}
+@*Hidden field*@
+
+<a href="/CourseDetail/Index/@ViewBag.courseID">Back to lesson</a>
+
+<h1>Take The Exam Of The Lesson @ViewBag.lesson.Name</h1>
+
+@foreach (DoingQuestionVM q in ViewBag.listQuestion)
+{
+    @foreach(AppUserQuestions a in ViewBag.listAppUserQuestion)
+    {
+        if(q.Question.ID == a.QuestionsId && a.TrueOrFalse)
+        {
+            check = true;
+            isDoing = true;
+            answer = a.Answer;
+            break;
+        }
+        if (q.Question.ID == a.QuestionsId && !a.TrueOrFalse)
+        {
+            check = false;
+            isDoing = true;
+            answer = a.Answer;
+            break;
+        }
+    }
+    <h2>Question @count: @q.Question.Content</h2>
+    count++;
+    @foreach (Answer a in q.Answers)
+    {
+        <form asp-action="DoingQuestion" method="post">
+            <input type="hidden" name="lessonID" value="@ViewBag.lessonID" />
+            <input type="hidden" name="questionID" value="@q.Question.ID" />
+            <input type="hidden" name="answer" value="@a.Content" />
+            <div>
+                <button class="p-3 mb-2 @((isDoing && check && a.Content.Equals(answer)) ? "btn btn-success" : "") 
+                               @((isDoing && !check && a.Content.Equals(answer)) ? "btn btn-danger" : "") "
+                    type="submit" style="min-width: 400px; border: none; border-radius: 10px;" 
+                >
+                    @a.Content
+                </button>
+            </div>
+        </form>
+    }
+    <h3 style="@(!isDoing ? "display: none;" : "")" class="text-danger">Explain: @q.Question.explain</h3>
+    isDoing = false;
+}

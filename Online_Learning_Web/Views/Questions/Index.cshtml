@@ -1,0 +1,58 @@
+﻿@model IEnumerable<Online_Learning_Web.Models.Question>
+
+<link href="../../assets/css/materialdesignicons.min.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/remixicon.css" rel="stylesheet" type="text/css">
+<link href="https://unicons.iconscout.com/release/v3.0.6/css/line.css" rel="stylesheet">
+<link href="../../assets/css/style.min.css" rel="stylesheet" type="text/css" id="theme-opt">
+<link href="../../assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<script src="../../assets/js/feather.min.js"></script>
+<script src="../../assets/js/bootstrap.bundle.min.js"></script>
+<script src="../../assets/js/simplebar.min.js"></script>
+<script src="../../assets/js/select2.min.js"></script>
+<script src="../../assets/js/select2.init.js"></script>
+<script src="../../assets/js/flatpickr.min.js"></script>
+<script src="../../assets/js/flatpickr.init.js"></script>
+<script src="../../assets/js/jquery.timepicker.min.js"></script>
+<script src="../../assets/js/timepicker.init.js"></script>
+<script src="../../assets/js/feather.min.js"></script>
+<script src="../../assets/js/app.js"></script>
+
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>List Question</h1>
+
+<a asp-action="Create" class="btn btn-success"><i class="ri ri-add-circle-line"></i>Add</a>
+<div class="table-responsive shadow rounded">
+    <table id="table" class="  table table-center bg-white mb-0">
+        <br />
+        <thead>
+            <tr style="background-color:#396cf0; color: #ffffff">
+                <th class="border-bottom p-3" style="min-width: 50px;">Course</th>
+                <th class="border-bottom p-3" style="min-width: 120px;">Chapter</th>
+                <th class="border-bottom p-3" style="min-width: 50px;">Lesson</th>
+                <th class="border-bottom p-3" style="min-width: 50px;">Content</th>
+                <th class="border-bottom p-3" style="min-width: 50px;">Button</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td class="p-3">@item.Lesson.Chapter.Course.Title</td>
+                    <td class="p-3">@item.Lesson.Chapter.Name</td>
+                    <td class="p-3">@item.Lesson.Name</td>
+                    <td class="p-3">@item.Content</td>
+                    <td class="text-center">
+                        <a asp-action="Edit" asp-route-id="@item.ID" class="btn btn-primary"><i class="uil uil-pen"></i></a>
+                        <a class="btn btn-info" asp-action="Details" asp-route-id="@item.ID">Details</a>
+                        <a asp-action="Delete" asp-route-id="@item.ID" class="btn btn-danger"><i class="uil uil-trash"></i></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>

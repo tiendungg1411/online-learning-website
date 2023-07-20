@@ -1,0 +1,125 @@
+﻿@model Online_Learning_Web.Models.Course
+
+@{
+	ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+	<h4>Question</h4>
+	<hr />
+	<dl class="row">
+		<dt class="col-sm-2">
+			@Html.DisplayNameFor(model => model.Title)
+		</dt>
+		<dd class="col-sm-10">
+			@Html.DisplayFor(model => model.Title)
+		</dd>
+		<dt class="col-sm-2">
+			@Html.DisplayNameFor(model => model.Price)
+		</dt>
+		<dd class="col-sm-10">
+			@Html.DisplayFor(model => model.Price)
+		</dd>
+		<dt class="col-sm-2">
+			@Html.DisplayNameFor(model => model.IsPublished)
+		</dt>
+		<dd class="col-sm-10">
+			@Html.DisplayFor(model => model.IsPublished)
+		</dd>
+		<dt class="col-sm-2">
+			@Html.DisplayNameFor(model => model.Level)
+		</dt>
+		<dd class="col-sm-10">
+			@Html.DisplayFor(model => model.Level)
+		</dd>
+		<dt class="col-sm-2">
+			@Html.DisplayNameFor(model => model.Description)
+		</dt>
+		<dd class="col-sm-10">
+			@Html.DisplayFor(model => model.Description)
+		</dd>
+
+
+	</dl>
+
+	<label>Target </label><br />
+	<textarea name="target" style="width: 635px; height: 100px;">@ViewBag.targetStr</textarea><br />
+	<label>Requirement </label><br />
+	<textarea name="requirement" style="width: 635px; height: 100px;">@ViewBag.RequirementStr</textarea>
+	<br />
+	<br />
+
+	@foreach (Chapter chapter in ViewBag.listChapter)
+	{
+		<h2>Chương: @chapter.Name</h2>
+		int i = 1;
+		bool check=false;
+		@foreach (Lesson lesson in ViewBag.ListLesson)
+		{
+
+
+			<table style="margin-left: 70px">
+				@if (chapter.ID == lesson.ChapterID)
+				{
+					check = true;
+					@if (i == 1)
+					{
+						<thead>
+							<tr>
+								<th style="width:300px">
+									Lesson Name
+								</th>
+								<th style="width:200px">
+									Date
+								</th>
+								<th style="width:150px">
+									Type
+								</th>
+								<th style="width:300px">
+									Link
+								</th>
+							</tr>
+						</thead>
+					}
+
+					<tbody>
+
+						@if (chapter.ID == lesson.ChapterID)
+						{
+							<tr>
+								<td style="width:300px">
+									@lesson.Name
+								</td>
+								<td style="width:200px">
+									@lesson.Date
+								</td>
+								<td style="width:150px">
+									@lesson.Type
+								</td>
+								<td style="width:300px">
+									@lesson.Link
+								</td>
+							</tr>
+						}
+
+
+					</tbody>
+				}
+			</table>
+			i++;
+		}
+		if (!check)
+		{
+			<h3 style="margin-left: 350px">Chương chưa có bài học</h3>
+		}
+
+	}
+
+
+</div>
+<div>
+	<a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+	<a asp-action="Index">Back to List</a>
+</div>

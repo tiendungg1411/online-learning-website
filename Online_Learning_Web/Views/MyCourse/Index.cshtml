@@ -1,0 +1,99 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Index";
+}
+@model IEnumerable<Course>
+<style>
+    .active-pink-2 input.form-control[type=text]:focus:not([readonly]) {
+        border-bottom: 1px solid #f48fb1;
+        box-shadow: 0 1px 0 0 #f48fb1;
+    }
+
+    .active-pink input.form-control[type=text] {
+        border-bottom: 1px solid #f48fb1;
+        box-shadow: 0 1px 0 0 #f48fb1;
+    }
+
+    .active-purple-2 input.form-control[type=text]:focus:not([readonly]) {
+        border-bottom: 1px solid #ce93d8;
+        box-shadow: 0 1px 0 0 #ce93d8;
+    }
+
+    .active-purple input.form-control[type=text] {
+        border-bottom: 1px solid #ce93d8;
+        box-shadow: 0 1px 0 0 #ce93d8;
+    }
+
+    .active-cyan-2 input.form-control[type=text]:focus:not([readonly]) {
+        border-bottom: 1px solid #4dd0e1;
+        box-shadow: 0 1px 0 0 #4dd0e1;
+    }
+
+    .active-cyan input.form-control[type=text] {
+        border-bottom: 1px solid #4dd0e1;
+        box-shadow: 0 1px 0 0 #4dd0e1;
+    }
+
+    .active-cyan .fa, .active-cyan-2 .fa {
+        color: #4dd0e1;
+    }
+
+    .active-purple .fa, .active-purple-2 .fa {
+        color: #ce93d8;
+    }
+
+    .active-pink .fa, .active-pink-2 .fa {
+        color: #f48fb1;
+    }
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+<h1 class="font-weight-bold" style="text-align:center">Danh sách khóa học đã tham gia</h1>
+<!-- Search form -->
+<div class="d-flex justify-content-end" style="margin-right:10px; margin-top:20px">
+    <form asp-action="Index" class="form-inline d-flex justify-content-center md-form form-sm mt-0">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+        </svg>
+        <input name="txtSearch" class="form-control form-control-sm ml-3 w-38" value="@ViewBag.txtSearch" type="text" placeholder="Search"
+               aria-label="Search">
+    </form>
+</div>
+<div style="margin-top: 40px" class="row">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    @if (@ViewBag.notFound != null )
+    {
+       
+        <img style="width:40%; height:26%;" src="https://cdn-icons-png.flaticon.com/512/2748/2748558.png" />
+    }
+    else if(Model.Count() == 0)
+    {
+    <h1 class="h1"> Chưa tham gia khóa học nào</h1>
+    }
+    else
+    {
+
+        @foreach (var item in Model)
+        {
+            <div class="col-sm-6 col-md-4">
+                <div class="card mb-3 mt-4 rounded" style="width: 34rem; height: 36rem">
+                    <img class="card-img-top" src="@Html.DisplayFor(modelItem => item.Image)" alt="Card image cap">
+                    <div class="card-body">
+                        <h4 class="card-title">@Html.DisplayFor(modelItem => item.Title)</h4>
+                        <p class="card-text" style="font-size:15px">@Html.DisplayFor(modelItem => item.Description)</p>
+                        <a asp-controller="CourseDetail" asp-action="Index" asp-route-id="@item.Id" class="btn btn-primary" style="font-size: 14px">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cursor-fill" viewBox="0 0 16 16">
+                                <path d="M14.082 2.182a.5.5 0 0 1 .103.557L8.528 15.467a.5.5 0 0 1-.917-.007L5.57 10.694.803 8.652a.5.5 0 0 1-.006-.916l12.728-5.657a.5.5 0 0 1 .556.103z" />
+                            </svg> Go to course
+                        </a>
+
+                    </div>
+                </div>
+            </div>
+
+        }
+    }
+
+</div>

@@ -1,0 +1,62 @@
+[33mcommit b1995bcfad8b080c7dfd937316d4c7536e2b2016[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Dinh Tien Dung (K16_HL) <dungdthe163862@fpt.edu.vn>
+Date:   Thu Jul 13 09:35:18 2023 +0000
+
+    Replace PRN_DB_Insert_OL.sql
+
+[1mdiff --git a/PRN_DB_Insert_OL.sql b/PRN_DB_Insert_OL.sql[m
+[1mindex c7778fb..ed08c71 100644[m
+[1m--- a/PRN_DB_Insert_OL.sql[m
+[1m+++ b/PRN_DB_Insert_OL.sql[m
+[36m@@ -24,7 +24,50 @@[m [minsert into Courses(title, price, isPublished, level, description, image) Values[m
+ insert into Courses(title, price, isPublished, level, description, image) Values( N'Responsive Với Grid System', 0, 1,'Hard', N'Trong khóa này chúng ta sẽ học về cách xây dựng giao diện web responsive với Grid System, tương tự Bootstrap 4.', N'https://files.fullstack.edu.vn/f8-prod/courses/3.png');[m
+ insert into Courses(title, price, isPublished, level, description, image) Values( N'Kiến Thức Nhập Môn IT', 0, 1,'Easy', N'Để có cái nhìn tổng quan về ngành IT - Lập trình web các bạn nên xem các videos tại khóa này trước nhé.', N'https://files.fullstack.edu.vn/f8-prod/courses/7.png');[m
+ [m
+[31m--- Insert CourseDetail Table[m
+[32m+[m[32m-- insert in to table Chapter[m
+[32m+[m[32m-- Course ID: 1[m
+[32m+[m[32minsert into Chapters (Name, CourseID) Values (N'1. Bắt đầu', 1011);[m
+[32m+[m[32minsert into Chapters (Name, CourseID) Values (N'1. Làm quen với HTML', 1011);[m
+[32m+[m[32minsert into Chapters (Name, CourseID) Values (N'1. Làm quen với CSS', 1011);[m
+[32m+[m[32minsert into Chapters (Name, CourseID) Values (N'1. Đệm viền và khoang lề', 1011);[m
+[32m+[m[32minsert into Chapters (Name, CourseID) Values (N'1. Thuộc tính tạo nền', 1011);[m
+[32m+[m
+[32m+[m[32m-- insert in to table lesson[m
+[32m+[m[32m-- Chapter 1[m
+[32m+[m[32minsert into Lessons(Name, Content, Date, NumOfLike, Type, Link, ChapterID) Values(N'Bạn sẽ làm được gì sau khóa học', '', '', '', '', 'https://www.youtube.com/embed/R6plN3FvzFY', 6);[m
+[32m+[m[32minsert into Lessons(Name, Content, Date, NumOfLike, Type, Link, ChapterID) Values(N'Tìm hiểu về HTML, CSS', '', '', '', '', 'https://www.youtube.com/embed/zwsPND378OQ', 6);[m
+[32m+[m[32minsert into Lessons(Name, Content, Date, NumOfLike, Type, Link, ChapterID) Values(N'Làm quen với Dev tools','', '', '', '', 'https://www.youtube.com/embed/7BJiPyN4zZ0', 6);[m
+[32m+[m[32minsert into Lessons(Name, Content, Date, NumOfLike, Type, Link, ChapterID) Values(N'Cài đặt VS Code, Page Ruler extension', '', '', '', '', 'https://www.youtube.com/embed/ZotVkQDC6mU', 6);[m
+[32m+[m[32minsert into Lessons(Name, Content, Date, NumOfLike, Type, Link, ChapterID) Values(N'Khắc phục lỗi cài đặt Page Ruler Redux ','', '', '', '', 'https://www.youtube.com/embed/ZotVkQDC6mU', 6);[m
+[32m+[m[32minsert into Lessons(Name, Content, Date, NumOfLike, Type, Link, ChapterID) Values(N'Bạn sẽ làm được gì sau khóa học','', '', '', '', 'https://www.youtube.com/embed/ZotVkQDC6mU', 6);[m
+[32m+[m[32m-- Chapter 2[m
+[32m+[m[32minsert into Lessons(Name, Content, Date, NumOfLike, Type, Link, ChapterID) Values(N'Cấu trúc 1 file HTML',  '', '', '', '', 'https://www.youtube.com/embed/LYnrFSGLCl8', 7);[m
+[32m+[m[32minsert into Lessons(Name, Content, Date, NumOfLike, Type, Link, ChapterID) Values(N'Comments trong HTML',  '', '', '', '', 'https://www.youtube.com/embed/JG0pdfdKjgQ', 7);[m
+[32m+[m[32minsert into Lessons(Name, Content, Date, NumOfLike, Type, Link, ChapterID) Values(N'Thẻ HTML thông dụng',  '', '', '', '', 'https://www.youtube.com/embed/AzmdwZ6e_aM', 7);[m
+[32m+[m[32minsert into Lessons(Name, Content, Date, NumOfLike, Type, Link, ChapterID) Values(N'Attribute trong HTML',  '', '', '', '', 'https://www.youtube.com/embed/UYpIh5pIkSA', 7);[m
+[32m+[m[32minsert into Lessons(Name, Content, Date, NumOfLike, Type, Link, ChapterID) Values(N'ID và Class',  '', '', '', '','https://www.youtube.com/embed/4J6d8cr0X48', 7);[m
+[32m+[m[32m-- Chapter 3[m
+[32m+[m[32minsert into Lessons(Name, Content, Date, NumOfLike, Type, Link, ChapterID) Values(N'Sử dụng CSS trong HTML',  '', '', '', '', 'https://www.youtube.com/embed/NsSsJTg29oE', 8);[m
+[32m+[m[32minsert into Lessons(Name, Content, Date, NumOfLike, Type, Link, ChapterID) Values(N'CSS Padding',  '', '', '', '', 'https://www.youtube.com/embed/aj-lD4XXr8A', 8);[m
+[32m+[m[32minsert into Lessons(Name, Content, Date, NumOfLike, Type, Link, ChapterID) Values(N'CSS Border',  '', '', '', '', 'https://www.youtube.com/embed/VbzOimNAOxE', 8);[m
+[32m+[m[32minsert into Lessons(Name, Content, Date, NumOfLike, Type, Link, ChapterID) Values(N'CSS Margin',  '', '', '', '','https://www.youtube.com/embed/8X48l0CK5_4', 8);[m
+[32m+[m[32minsert into Lessons(Name, Content, Date, NumOfLike, Type, Link, ChapterID) Values(N'CSS-Box-sizing',  '', '', '', '', 'https://www.youtube.com/embed/bv16wjxgV4U', 8);[m
+[32m+[m[32minsert into Lessons(Name, Content, Date, NumOfLike, Type, Link, ChapterID) Values(N'CSS-Background-clip',  '', '', '', '', 'https://www.youtube.com/embed/hMWhvbCJIq8', 8);[m
+[32m+[m[32m-- Chapter 4[m
+[32m+[m[32minsert into Lessons(Name, Content, Date, NumOfLike, Type, Link, ChapterID) Values(N'Giới thiệu Flexbox',  '', '', '', '', 'https://www.youtube.com/embed/bVUN6nS82k8', 9);[m
+[32m+[m[32minsert into Lessons(Name, Content, Date, NumOfLike, Type, Link, ChapterID) Values(N'Ví dụ dùng BEM tạo buttons',  '', '', '', '', 'https://www.youtube.com/embed/k1ZH5Mlj3tw', 9);[m
+[32m+[m[32minsert into Lessons(Name, Content, Date, NumOfLike, Type, Link, ChapterID) Values(N'Ví dụ dùng BEM tạo Toast Message UI',  '', '', '', '', 'https://www.youtube.com/embed/7c7ABhaQJGM', 9);[m
+[32m+[m[32minsert into Lessons(Name, Content, Date, NumOfLike, Type, Link, ChapterID) Values(N'BEM - Khi các Block lồng nhau thì đặt tên như thế nào?',  '', '', '', '', 'https://www.youtube.com/embed/IddL557icoc', 9);[m
+[32m+[m[32minsert into Lessons(Name, Content, Date, NumOfLike, Type, Link, ChapterID) Values(N'Dựng source base',  '', '', '', '', 'https://www.youtube.com/embed/1xNzl5SYjPo', 9);[m
+[32m+[m[32minsert into Lessons(Name, Content, Date, NumOfLike, Type, Link, ChapterID) Values(N'Dựng khung web',  '', '', '', '', 'https://www.youtube.com/embed/-umvdHAfR6E', 9);[m
+[32m+[m[32m-- Chapter 5[m
+[32m+[m[32minsert into Lessons(Name, Content, Date, NumOfLike, Type, Link, ChapterID) Values(N'Dựng khung phần danh mục',  '', '', '', '', 'https://www.youtube.com/embed/9_9X9GzVOj0', 10);[m
+[32m+[m[32minsert into Lessons(Name, Content, Date, NumOfLike, Type, Link, ChapterID) Values(N'Danh mục - base responsive',  '', '', '', '', 'https://www.youtube.com/embed/f4LOGq3v0C0', 10);[m
+[32m+[m[32minsert into Lessons(Name, Content, Date, NumOfLike, Type, Link, ChapterID) Values(N'Dựng khung: Sắp xếp, lọc sản phẩm',  '', '', '', '', 'https://www.youtube.com/embed/N7T_9a1nZmk', 10);[m
+[32m+[m[32minsert into Lessons(Name, Content, Date, NumOfLike, Type, Link, ChapterID) Values(N'Sản phẩm: CSS nhãn giảm giá',  '', '', '', '', 'https://www.youtube.com/embed/XL0RM7ZMKC8', 10);[m
+[32m+[m[32minsert into Lessons(Name, Content, Date, NumOfLike, Type, Link, ChapterID) Values(N'Sản phẩm CSS - Phần 1',  '', '', '', '', 'https://www.youtube.com/embed/3E_8Pnjnrms', 10);[m
+[32m+[m[32minsert into Lessons(Name, Content, Date, NumOfLike, Type, Link, ChapterID) Values(N'Sản phẩm CSS - Phần 2',  '', '', '', '', 'https://www.youtube.com/embed/G9Lx0ejUgzE', 10);[m
+[32m+[m
+ -- insert into table CourseRouteTypeItem[m
+ insert into CourseRouteTypeItem( RouteTypeItemsID,CoursesId ) Values(1,9);[m
+ insert into CourseRouteTypeItem( RouteTypeItemsID ,CoursesId ) Values(2,1);[m

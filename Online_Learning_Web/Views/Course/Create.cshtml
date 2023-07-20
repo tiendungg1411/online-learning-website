@@ -1,0 +1,41 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@model Online_Learning_Web.Models.Course
+
+<h1>Create</h1>
+<div class="row">
+    <div class="col-md-6">
+        <form id="f" asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            
+            <label asp-for="Title">Title:</label>
+            <input asp-for="Title" type="text" style="width: 635px; height: 30px;" class="title" required />
+            <label asp-for="Price">Price:</label>
+            <input asp-for="Price" type="text" style="width: 635px; height: 30px;" class="price" required />
+            <br />
+            <input type="checkbox" asp-for="IsPublished" value="true" /> IsPublished
+            <h3>Level</h3>
+            <select style="margin-right: 20px;" class="btn btn-info" name="level">
+                <option asp-for="Level" value="-1">Select a Level</option>
+                <option asp-for="Level" value="Easy">Easy</option>
+                <option asp-for="Level" value="Medium">Medium</option>
+                <option asp-for="Level" value="Hard">Hard</option>
+            </select>
+            <br />
+            <label asp-for="Description">Description:</label>
+            <textarea asp-for="Description" style="width: 635px; height: 100px;" name="description" required></textarea>
+            <label asp-for="Image">Image:</label>
+            <input asp-for="Image" type="text" style="width: 635px; height: 30px;" class="image" required />
+            
+            <br />
+            <br />
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+            
+
+        </form>
+    </div>
+</div>

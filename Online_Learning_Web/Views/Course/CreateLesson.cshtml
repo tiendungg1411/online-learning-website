@@ -1,0 +1,24 @@
+﻿@model Online_Learning_Web.Models.Lesson
+
+
+<form id="f" asp-action="CreateLesson">
+    <input value="@ViewBag.chapterId" name="id" hidden />
+    <br />
+    <label asp-for="Name">Name:</label>
+    <input asp-for="Name" type="text" style="width: 635px; height: 30px;" required /><br /><br />
+
+    <label asp-for="Link">Link:</label>
+    <input asp-for="Link" type="text" style="width: 635px; height: 30px;" required />
+    <br />
+
+    <h3>Type</h3>
+    <select style="margin-right: 20px;" class="btn btn-info" name="Type">
+        <option asp-for="Type" value="-1">Select a Type</option>
+        <option asp-for="Type" value="practive">Quiz</option>
+        <option asp-for="Type" value="video">Video</option>
+    </select>
+    <br /><br />
+    <div class="form-group">
+        <input type="submit" value="Create" class="btn btn-primary" />
+    </div>
+</form>

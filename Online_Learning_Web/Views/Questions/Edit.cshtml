@@ -1,0 +1,58 @@
+﻿@model Online_Learning_Web.ViewModel.AddQuestionVM
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Question</h4>
+<hr />
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" name="id" value="@ViewBag.id" />
+            <div class="form-group">
+                <label asp-for="Content" class="control-label"></label>
+                <input asp-for="Content" value="@ViewBag.Question.Content" class="form-control" />
+                <span asp-validation-for="Content" class="text-danger"></span>
+            </div>
+            Answer<br />
+            @foreach (Answer a in ViewBag.listAnswer)
+            {
+                <div class="form-group">
+                    <input asp-for="Answer" value="@a.Content" class="form-control" />
+                </div>
+            }
+            CorrectAnswer<br />
+            <select style="margin-right: 20px;" class="btn btn-info" name="CorrectAnswer">
+                <option asp-for="CorrectAnswer" value="-1">Select a CorrectAnswer</option>
+                <option asp-for="CorrectAnswer" selected value="0">1</option>
+                <option asp-for="CorrectAnswer" value="1">2</option>
+                <option asp-for="CorrectAnswer" value="2">3</option>
+                <option asp-for="CorrectAnswer" value="3">4</option>
+            </select><br />
+
+            <div class="form-group">
+                <label asp-for="Explain" class="control-label"></label>
+                <input asp-for="Explain" value="@ViewBag.Question.Explain" class="form-control" />
+                <span asp-validation-for="Explain" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

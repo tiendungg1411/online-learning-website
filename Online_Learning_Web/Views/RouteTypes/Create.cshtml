@@ -1,0 +1,48 @@
+﻿@model Online_Learning_Web.Models.RouteType
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1 style="text-align:center">Tạo lộ trình học</h1>
+<div class="row" style="display: flex;
+  justify-content: center;
+  align-items: center;">
+    <div class="col-md-4 " style="font-size:18px">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" style="font-size:16px" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Image" class="control-label"></label>
+                <input asp-for="Image" class="form-control" style="font-size:16px" />
+                <span asp-validation-for="Image" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description1" class="control-label "></label>
+                <input asp-for="Description1" class="form-control" style="font-size:16px" />
+                <span asp-validation-for="Description1" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description2" class="control-label"></label>
+                <input asp-for="Description2" class="form-control" style="font-size:16px" />
+                <span asp-validation-for="Description2" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group" >
+                <input type="submit" style="font-size:16px" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div style="text-align:center;font-size:16px">
+    <a asp-action="List" style="text-decoration:none">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

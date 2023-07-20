@@ -1,0 +1,95 @@
+﻿@model Online_Learning_Web.Models.RouteTypeItem
+<style>
+    .group {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr; /* Chia thành 3 cột bằng nhau */
+        grid-gap: 23px; /* Khoảng cách giữa các ô */
+        margin-left: 15px;
+        text-align: center;
+        padding: 80px;
+    }
+
+    .item {
+        /*                width: 33.33%;*/
+        height: 150px;
+        background-color: #eee;
+        /*                border: 2px solid none;*/
+        padding: 17px;
+        /*                transition: transform 0.2s ease-in-out;*/
+        cursor: pointer;
+        text-align: center;
+        font-size: 14px;
+        width: 180px;
+        border-radius: 10px;
+        margin-bottom: 10px;
+    }
+</style>
+<h1 style="text-align:center">Tạo mục lục lộ trình học</h1>
+<div class="row">
+    <div class="card border-0 p-5 rounded shadow">
+        <div class="col-lg-12 mt-4">
+            <form asp-action="Create" class="mt-4">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="mb-3">
+                            <label class="form-label">Lộ trình<span class="text-danger">*</span></label>
+                            <select asp-for="RouteTypeID" class="form-control time-during select2input" required>
+                                <option value="">Chọn lộ trình</option>
+                                @foreach (RouteType c in ViewBag.RouteType)
+                                {
+                                    <option value="@c.ID">@c.Name</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="mb-3">
+                            <label class="form-label">Tiêu đề mục lục<span class="text-danger">*</span></label>
+                            <input asp-for="Name" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="mb-3">
+                            <label class="form-label">Giới thiệu về mục lục<span class="text-danger">*</span></label>
+                            <textarea asp-for="Description" class="form-control" required></textarea>
+                        </div>
+                    </div>
+                    <div class="row">
+                            <label class="form-label">Khoá học<span class="text-danger">*</span></label>
+                                @foreach (var item in ViewBag.ListCourse)
+                                {
+                                    
+                                <div class="col-md-4">
+                                <label for="@item.Id">
+                                    <div class="item">
+                                        <input id="@item.Id" class="m-2" type="checkbox" style="cursor: pointer;" name="idCourses" value="@item.Id" />@item.Title
+                                        <img src="@item.Image" style="width: 119px ; height: 74px ; border-radius: 10px;">
+                                    </div>
+                                    </label>
+                                </div>
+                                }
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" style="font-size:16px" value="Create" class="btn btn-primary" />
+                    </div>
+                <div style="text-align:center;font-size:16px">
+                    <a asp-action="Index" style="text-decoration:none">Back to List</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+@*<div class="form-group">
+    <label asp-for="Image" class="control-label"></label>
+    <input asp-for="Image" class="form-control" style="font-size:16px" />
+    <span asp-validation-for="Image" class="text-danger"></span>
+    </div>*@
+
+
+
+

@@ -1,0 +1,106 @@
+﻿@model Online_Learning_Web.Models.Course;
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<a asp-action="Index">Back</a>
+<h1>Edit Course</h1>
+<div class="row">
+	<div class="col-md-6">
+		<form asp-action="Edit">
+
+			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+			<label asp-for="Title">Title:</label>
+			<input asp-for="Title" type="text" style="width: 635px; height: 30px;" value="@Model.Title" class="title" required />
+			<label asp-for="Price">Price:</label>
+			<input asp-for="Price" type="text" style="width: 635px; height: 30px;" value="@Model.Price" class="price" required />
+			<br />
+			@if (Model.IsPublished)
+			{
+				<input type="checkbox" asp-for="IsPublished" checked />
+
+				<span>IsPublished</span>
+			}
+			else
+			{
+				<input type="checkbox" asp-for="IsPublished" /> <span>IsPublished</span>
+			}
+			
+			<h3>Level</h3>
+			<select style="margin-right: 20px;" class="btn btn-info" name="level">
+
+				<option value="-1">Select a Level</option>
+				<!option asp-for="Level" value="Easy" @(Model.Level.Equals("Easy") ? "selected" : "")>Easy</!option>
+				<!option asp-for="Level" value="Medium" @(Model.Level.Equals("Medium") ? "selected" : "")>Medium</!option>
+				<!option asp-for="Level" value="Hard" @(Model.Level.Equals("Hard") ? "selected" : "")>Hard</!option>
+			</select>
+			<br />
+			<label asp-for="Description">Description:</label>
+			<!textarea asp-for="Description" class="description" style="width: 635px; height: 100px;" name="description" required>@Model.Description</!textarea>
+			<label asp-for="Image">Image:</label>
+			<input asp-for="Image" type="text" style="width: 635px; height: 30px;" value="@Model.Image" class="image" required />
+			<label>Target </label><br />
+			<textarea name="target" style="width: 635px; height: 100px;">@ViewBag.targetStr</textarea>
+
+			<label>Chapter: </label><br />
+			<div class="content_bot_chapter">
+				@if (ViewBag.listChapter.Count == 0)
+				{
+					var numOfInputTag = 1; // Số lượng input ban đầu, bạn có thể thay đổi tùy ý.
+
+					for (var i = 0; i < numOfInputTag; i++)
+					{
+						<input style="width: 550px; height: 26px; margin-bottom: 10px" type="text" name="chapter" class="chapter" required/>
+					}
+				}
+				else
+				{
+					foreach (Chapter c in ViewBag.listChapter)
+					{
+						<div class="edit_chapter" style="display: flex; width: 750px;">
+							<input style="width: 550px; height: 26px; margin-bottom: 10px" value="@c.Name" type="text" name="chapter" class="chapter" required />
+							<a asp-action="EditChapter" asp-route-id="@c.ID">Edit Chapter</a> |
+						</div>
+
+					}
+				}
+
+			</div>
+			<div class="add_remove_btn">
+				<i onclick="add2()" style="width: 30px; cursor: pointer;" class="fa fa-plus" style="color: #5db85c;"></i>
+				<i onclick="remove2()" style="width: 29px; cursor: pointer; margin-left: 10px;" class="fa fa-minus" style="color: #5db85c;"></i>
+			</div>
+
+			<label>Requirement </label><br />
+			<textarea name="requirement" style="width: 635px; height: 100px;">@ViewBag.RequirementStr</textarea>
+			<br />
+			<br />
+
+			<div class="form-group">
+				<input type="submit" value="Save" class="btn btn-primary" />
+			</div>
+		</form>
+	</div>
+</div>
+<script>
+	function add2() {
+		const contain = document.querySelector(".content_bot_chapter");
+		const inputTag = document.createElement('input');
+		//style="width: 750px; height: 40px; margin-bottom: 10px" type="text" name="answer" value=""
+		inputTag.style.width = '550px';
+		inputTag.style.height = '26px';
+		inputTag.style.marginBottom = '10px';
+		inputTag.type = "text";
+		inputTag.name = "chapter";
+		inputTag.className = "chapter";
+		contain.appendChild(inputTag);
+
+	}
+	function remove2() {
+		const select = document.querySelector(".content_bot_chapter");
+		var numOfInputTag = document.getElementsByClassName("chapter");
+
+		if (numOfInputTag.length > 1) {
+			select.removeChild(select.lastChild);
+		}
+	}
+</script>

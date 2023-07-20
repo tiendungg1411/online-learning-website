@@ -1,0 +1,70 @@
+﻿@model Online_Learning_Web.Models.RouteTypeItem
+<style>
+
+    .item {
+        /*                width: 33.33%;*/
+        height: 150px;
+        background-color: #eee;
+        /*                border: 2px solid none;*/
+        padding: 17px;
+        /*                transition: transform 0.2s ease-in-out;*/
+        cursor: pointer;
+        text-align: center;
+        font-size: 14px;
+        width: 180px;
+        border-radius: 10px;
+        margin-bottom: 10px;
+    }
+    .item p{
+        margin-bottom: 2px;
+    }
+</style>
+<h1 style="text-align:center">Chi tiết mục lục lộ trình</h1>
+<div class="row m-5">
+    <div class="card border-0 p-5 rounded shadow">
+        <div class="col-lg-12 mt-4">
+            <form asp-action="Create" class="mt-4">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="mb-3">
+                            <label class="form-label">Lộ trình: </label>
+                            <p class="ps-3">@ViewBag.routeTypeItem.RouteType.Name</p>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="mb-3">
+                            <label class="form-label">Tiêu đề mục lục:</label>
+                            <p class="ps-3">@ViewBag.routeTypeItem.Name</p>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="mb-3">
+                            <label class="form-label">Giới thiệu về mục lục:</label>
+                            <p class ="ps-3">@ViewBag.routeTypeItem.Description</p>
+                        </div>
+                    </div>
+                    <div class="row " >
+                        <label class="form-label">Khoá học:</label>
+                        @foreach (var item in ViewBag.routeCourseItem)
+                        {
+                            @foreach (var item1 in item.Courses)
+                            {
+                                <div class="col-md-4">
+                                    <div class="item">
+                                        <p >@item1.Title</p>
+                                        <img src="@item1.Image" style="width: 119px ; height: 74px ; border-radius: 10px;">
+                                    </div>
+                                </div>
+                            }
+                        }
+                    </div>
+
+                </div>
+                <div style="text-align:center;font-size:16px">
+                    <a asp-action="Index" style="text-decoration:none">Back to List</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

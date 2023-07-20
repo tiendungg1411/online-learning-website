@@ -1,0 +1,40 @@
+﻿<div>
+    <h2>@ViewBag.rt.Name</h2>
+    <p>@ViewBag.rt.Description2</p>
+    @{
+        int count = 0;
+    }
+    @foreach (var item in ViewBag.listC)
+    {
+        count++;
+        <h3>@count. @item.Name</h3>
+        <p>@item.Description</p>
+        @foreach (var c in item.Courses)
+        {
+            <div style="border: 2px solid #e8e8e8 ;border-radius: 15px;margin-top: 20px;margin-bottom: 20px">
+                <div style="display: flex">
+                    <img src="@c.Image" style="width: 220px ; height: 120px ; border-radius: 15px;margin: 20px">
+                    <div style="margin: 20px 10px 10px">
+                        <h1 style="font-size: 20px;font-weight: 700">@c.Title</h1>
+                        @if (c.Price <= 0)
+                        {
+                            <p style="color: red;font-size: 100%;font-weight: 600;margin-top: 10px">Miễn phí</p>
+
+                        }
+                        else
+                        {
+                            <p style="color: red;font-size: 100%;font-weight: 600;margin-top: 10px">@c.Price</p>
+                        }
+
+                        <a style="font-size: 100%;line-height: 1.6;">
+                            @c.Description
+                        </a> <br>
+                        <a href="https://localhost:7047/CourseDetail/Index/ @c.Id" class="btn btn-warning" style=" background-color: #f05123; border-radius: 30px; color: #ffffff;text-decoration: none;">
+                            Xem khóa học
+                        </a>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+</div>

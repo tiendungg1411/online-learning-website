@@ -1,0 +1,40 @@
+﻿@using Microsoft.AspNetCore.Identity
+@model Online_Learning_Web.ViewModel.RoleVM
+@{
+    var role = ViewBag.role as IdentityRole;
+}
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Question</h4>
+<hr />
+<input name="id" type="hidden" value="@role.Id"/>
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="Edit"  method="post">
+            <div class="form-floating">
+                <input asp-for="Name" class="form-control" aria-required="true" />
+                <label asp-for="Name"></label>
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

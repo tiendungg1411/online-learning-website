@@ -1,0 +1,41 @@
+b1: open terminal
+b2: dotnet ef migrations add tenMigration
+b3: dotnet ef database update
+
+--De lay duoc user thi phai inject UserManager<AppUser> 
+
+Vi du:
+public class HomeController : Controller
+    {
+        private readonly ILogger<HomeController> _logger;
+        private readonly UserManager<AppUser> _userManager;
+
+        public HomeController(ILogger<HomeController> logger, UserManager<AppUser> userManager)
+        {
+            _logger = logger;
+            _userManager = userManager;
+        }
+
+        public IActionResult Index()
+        {
+            //Get user info
+            ViewBag.UserID = _userManager.GetUserId(User); // Lay user
+            ViewBag.UserName = _userManager.GetUserName(User); // Lay user
+            return View();
+        }
+
+--Insert data
+-- Insert Chapter Table
+select * from chapters
+insert into Chapters(name, courseID) Values('1. Bắt đầu', 1);
+insert into Chapters(name, courseID) Values( '2. Làm quen với HTML', 1);
+insert into Chapters( name, courseID) Values( '3. Làm quen với CSS', 1);
+insert into Chapters( name, courseID) Values( '4. Đệm viền và khoang lề', 1);
+insert into Chapters( name, courseID) Values( '5. Thuộc tính tạo nền', 1);
+
+
+insert into Lessons( name, content, link , date, numOfLike, type,  chapterID) Values( 'Bạn sẽ làm được gì sau khóa học', '',  '', GetDate(), 0, 'video',  1);
+insert into Lessons( name, content, link, date, numOfLike, type,  chapterID) Values( 'Tìm hiểu về HTML, CSS', '', '',  GetDate(), 0, 'video',  1);
+insert into Lessons( name, content, link, date, numOfLike, type,  chapterID) Values( 'Làm quen với Dev tools', '', '',  GetDate(), 0, 'video',  1);
+insert into Lessons( name, content, link, date, numOfLike, type,  chapterID) Values( 'Cài đặt VS Code, Page Ruler, extension',  '', '', GetDate(), 0, 'video',  1);
+insert into Lessons( name, content, link, date, numOfLike, type,  chapterID) Values( 'Khắc phục lỗi cài đặt Page Ruler Redux',  '', '', GetDate(), 0, 'video',  1);

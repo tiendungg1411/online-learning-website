@@ -1,0 +1,170 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using Online_Learning_Web.Models
+
+@inject SignInManager<AppUser> SignInManager
+@inject UserManager<AppUser> UserManager
+@inject RoleManager<IdentityRole> RoleManager
+@{
+    var roles = RoleManager.Roles.ToList();
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Online_Learning_Web</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Online_Learning_Web.styles.css" asp-append-version="true" />
+    @*<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">*@
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <link href="../../assets/css/materialdesignicons.min.css" rel="stylesheet" type="text/css">
+    <link href="../../assets/css/remixicon.css" rel="stylesheet" type="text/css">
+    <link href="https://unicons.iconscout.com/release/v3.0.6/css/line.css" rel="stylesheet">
+    <link href="../../assets/css/style.min.css" rel="stylesheet" type="text/css" id="theme-opt">
+    <link href="../../assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <script src="../../assets/js/feather.min.js"></script>
+    <script src="../../assets/js/bootstrap.bundle.min.js"></script>
+    <script src="../../assets/js/simplebar.min.js"></script>
+    <script src="../../assets/js/select2.min.js"></script>
+    <script src="../../assets/js/select2.init.js"></script>
+    <script src="../../assets/js/flatpickr.min.js"></script>
+    <script src="../../assets/js/flatpickr.init.js"></script>
+    <script src="../../assets/js/jquery.timepicker.min.js"></script>
+    <script src="../../assets/js/timepicker.init.js"></script>
+    <script src="../../assets/js/feather.min.js"></script>
+    <script src="../../assets/js/app.js"></script>
+    <style>
+        .page:hover {
+            opacity: 0.8;
+        }
+
+        .cart:hover {
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-primary border-bottom box-shadow mb-3 ">
+            <div class="container-fluid">
+                <a class="navbar-brand text-light page" asp-area="" asp-controller="Home" asp-action="Index">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-stars" viewBox="0 0 16 16">
+                        <path d="M7.657 6.247c.11-.33.576-.33.686 0l.645 1.937a2.89 2.89 0 0 0 1.829 1.828l1.936.645c.33.11.33.576 0 .686l-1.937.645a2.89 2.89 0 0 0-1.828 1.829l-.645 1.936a.361.361 0 0 1-.686 0l-.645-1.937a2.89 2.89 0 0 0-1.828-1.828l-1.937-.645a.361.361 0 0 1 0-.686l1.937-.645a2.89 2.89 0 0 0 1.828-1.828l.645-1.937zM3.794 1.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387A1.734 1.734 0 0 0 4.593 5.69l-.387 1.162a.217.217 0 0 1-.412 0L3.407 5.69A1.734 1.734 0 0 0 2.31 4.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387A1.734 1.734 0 0 0 3.407 2.31l.387-1.162zM10.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732L9.1 2.137a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L10.863.1z" />
+                    </svg>Online Learning
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>@*
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                <ul class="navbar-nav flex-grow-1">
+                <li class="nav-item">
+                <a id="manage" class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @UserManager.GetUserName(User)!</a>
+                </li>
+                </ul>
+                </div> *@
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="btn btn-light text-danger" href="/LearningPath/list">Lộ trình</a>
+                        </li>
+
+                        @if (SignInManager.IsSignedIn(User) && UserManager.GetUserName(User).Equals("tiendungyb2002@gmail.com"))
+                        {
+                            <li class="nav-item ml-4">
+                                <a class="btn btn-light text-danger" href="/AppUsers">Quản lý người dùng</a>
+                            </li>
+                        }
+
+                        @if (SignInManager.IsSignedIn(User) && UserManager.GetUserName(User).Equals("tiendungyb2002@gmail.com"))
+                        {
+                            <li class="nav-item ml-4">
+                                <a class="btn btn-light text-danger" href="/Roles">Quản lý vai trò</a>
+                            </li>
+                        }
+                        
+                       
+
+                    </ul>
+                </div>
+            </div>
+            @if (SignInManager.IsSignedIn(User))
+            {
+
+                <a asp-controller="MyCourse" data-toggle="tooltip" data-placement="left" title="My Course" style="margin-right:20px; cursor:pointer; color:white">
+                    <svg class="cart" xmlns="http://www.w3.org/2000/svg" width="26" height="18" fill="currentColor" class="bi bi-cart-check-fill" viewBox="0 0 16 16">
+                        <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm-1.646-7.646-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L8 8.293l2.646-2.647a.5.5 0 0 1 .708.708z" />
+                    </svg> <br />
+                </a>
+
+                <div class="dropdown dropdown-primary">
+
+                    <button type="button" class="btn btn-pills btn-soft-primary dropdown-toggle p-0" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <img src="https://cdn-icons-png.flaticon.com/512/432/432408.png" height="28" alt="Black and White Portrait of a Man" loading="lazy" />
+                    </button>
+                    <div class="dropdown-menu dd-menu dropdown-menu-end bg-white shadow border-0 mt-3 py-3" style="min-width: 200px;">
+                        <a class="dropdown-item d-flex align-items-center text-dark" s>
+                            <div class="flex-1 ms-2">
+                                <span class="d-block mb-1">@UserManager.GetUserName(User)</span>
+                            </div>
+                        </a>
+                        <a id="manage" class="dropdown-item text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">My Profile</a>
+                        <a class="dropdown-item text-dark" href="/Course"><span class="mb-0 d-inline-block me-1"><i class="uil uil-setting align-middle h6"></i></span>Course List</a>
+                        <a class="dropdown-item text-dark" href="/RouteCourseItem"><span class="mb-0 d-inline-block me-1"><i class="uil uil-setting align-middle h6"></i></span>Route Course Item</a>
+                        <a class="dropdown-item text-dark" href="/Questions"><span class="mb-0 d-inline-block me-1"><i class="uil uil-setting align-middle h6"></i></span>Question Management</a>
+                        <a class="dropdown-item text-dark" href="/RouteTypes/List"><span class="mb-0 d-inline-block me-1"><i class="uil uil-setting align-middle h6"></i></span>Route Types</a>
+
+                        <div class="dropdown-divider border-top"></div>
+                        <a>
+                            <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                                <button style="font-size:15px" id="logout" type="submit" class=" dropdown-item text-dark">Logout</button>
+                            </form>
+                        </a>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <ul style="font-size:20px" class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" id="register" asp-area="Identity" asp-page="/Account/Register">Register</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" id="login" asp-area="Identity" asp-page="/Account/Login">Login</a>
+                    </li>
+                </ul>
+            }
+        </nav>
+    </header>
+    <div style="margin-bottom:100px;" class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <footer class="bg-light text-center text-lg-start">
+            <!-- Copyright -->
+            <div class="text-center p-3" style="background-color: #3079f0">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-lightning-charge" viewBox="0 0 16 16">
+                    <path d="M11.251.068a.5.5 0 0 1 .227.58L9.677 6.5H13a.5.5 0 0 1 .364.843l-8 8.5a.5.5 0 0 1-.842-.49L6.323 9.5H3a.5.5 0 0 1-.364-.843l8-8.5a.5.5 0 0 1 .615-.09zM4.157 8.5H7a.5.5 0 0 1 .478.647L6.11 13.59l5.732-6.09H9a.5.5 0 0 1-.478-.647L9.89 2.41 4.157 8.5z" />
+                </svg> Online Learning:
+                <a class="text-dark" href="https://www.facebook.com/sieusao.chemgio.90">CEO Of Company</a>
+            </div>
+            <!-- Copyright -->
+        </footer>
+        </footers>
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+        @*<!-- MDB -->
+        <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.js"></script>*@
+        @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
+
