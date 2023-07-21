@@ -1,5 +1,5 @@
-# G6_PRN211
-
+# Online Learning Website
+Framework: Identity framework, Entity framework.
 
 
 ## Getting started
